@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Inquebrantable - Blog Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variables de Color */
+        :root {
+            --color-principal: #383838;
+            --color-secundario: #C31F25;
+            --color-fondo: #D9D9D9;
+            --color-texto: #FFFFFF;
+            --color-texto-oscuro: #000000;
+            --color-gris-claro: #EBEBEB;
+            --color-gris-intermedio: #B3B3B3;
+        }
+
+        /* --- Estilos Generales --- */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: var(--color-fondo);
+            color: var(--color-texto-oscuro);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Contenedor Principal */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- Header Superior --- */
+        .main-header {
+            background-color: var(--color-secundario);
+            color: var(--color-texto);
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .title {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .header-nav a {
+            background-color: var(--color-principal);
+            color: var(--color-texto);
+            padding: 5px 15px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            border: 1px solid var(--color-principal);
+        }
+
+        /* --- Sidebar Izquierda --- */
+        .sidebar-left {
+            width: 280px;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section {
+            background-color: var(--color-gris-intermedio);
+            padding: 20px 15px;
+            margin-bottom: 20px;
+            color: var(--color-texto);
+        }
+
+        .logo-section {
+            background-color: var(--color-principal);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+        }
+
+        .sponsors-section h2 {
+            text-align: center;
+            margin-top: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .sponsor-logo {
+            background-color: var(--color-principal);
+            color: var(--color-texto);
+            text-align: center;
+            padding: 15px 10px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .sponsor-logo.red-logo {
+            background-color: var(--color-secundario);
+        }
+
+        .collaborate-section {
+            text-align: center;
+        }
+
+        .collaborate-section p {
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .btn-landing {
+            display: inline-block;
+            background-color: var(--color-secundario);
+            color: var(--color-texto);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* --- Contenido Principal (Main) - CORRECCIÓN DE FLEXIBILIDAD --- */
+        .main-content {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .intro-section {
+            background-color: var(--color-secundario);
+            color: var(--color-texto);
+            padding: 20px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .main-body-flex {
+            display: flex;
+            gap: 20px;
+        }
+
+        .content-left {
+            flex: 2; 
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 0; /* Asegura que el contenido se pueda reducir */
+        }
+
+        .content-right {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 0; /* Asegura que el contenido se pueda reducir */
+        }
+
+        .card {
+            background-color: var(--color-gris-claro);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* PERFIL Y IMAGEN (CORRECCIÓN DE TAMAÑO) */
+        .profile-card {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover; /* Recorta la imagen para ajustarse sin distorsionar */
+            border-radius: 50%;
+            /* Quitar el 'max-width: 100%' si la imagen ya tiene 'width' y 'height' fijos */
+        }
+
+        .profile-info h3 {
+            margin-top: 0;
+            color: var(--color-secundario);
+            font-size: 1.3em;
+        }
+
+        .profile-info p {
+            font-size: 0.9em;
+        }
+
+        /* Tips Card */
+        .tips-guides h3 {
+            color: var(--color-secundario);
+            margin-top: 0;
+        }
+
+        .tips-guides ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .tips-guides li {
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            position: relative;
+        }
+
+        .tips-guides li::before {
+            content: "\2022";
+            color: var(--color-secundario);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* VIDEOS Y REDES SOCIALES (CORRECCIÓN DE DESBORDE) */
+        .video-card h3 {
+            text-align: center;
+            color: var(--color-principal);
+            margin-top: 0;
+        }
+        
+        /* Regla fundamental para que los incrustados se ajusten */
+        .video-card iframe, 
+        .video-card video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-placeholder {
+            /* Usado si no hay iframe, solo un bloque de color */
+            background-color: var(--color-principal);
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--color-texto);
+            font-size: 1.2em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .social-media-card {
+            text-align: center;
+        }
+
+        .social-media-card h3 {
+            color: var(--color-principal);
+            margin-top: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: space-around;
+            gap: 5px;
+            padding: 0 10px;
+        }
+
+        .social-icons a {
+            font-size: 2em;
+            color: var(--color-principal);
+            margin: 0;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--color-principal);
+            color: var(--color-texto);
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="title">El Inquebrantable</h1>
+            <nav class="header-nav">
+                <a href="informacion.html">Información</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar-left">
+            <div class="section logo-section">
+                <img src="img/2.jpeg" alt="Logo El Inquebrantable" class="logo">
+            </div>
+
+            <div class="section sponsors-section">
+                <h2>Nuestros Patrocinadores</h2>
+                <div class="sponsor-logo">593 BOXING PROMOTIONS</div>
+                <div class="sponsor-logo red-logo">NAB LAB</div>
+                <div class="sponsor-logo">MIAMI FIGHT CLUB</div>
+            </div>
+
+            <div class="section collaborate-section">
+                <h2>Colabora con Nosotros</h2>
+                <p>Trabaja con nosotros, para mayor información accede a nuestra Landing Page</p>
+                <a href="#" class="btn-landing">Landing Page</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="intro-section">
+                <p>
+                    **Rafael "El Inquebrantable" Marquez** es un Muchador amateur, influencer que busca crecer como de manera profesional, este es su blog personal donde podras conocer más de su historia y su crecimiento junto a mas informacion que te podra llamar la atencion.
+                </p>
+            </section>
+
+            <div class="main-body-flex">
+                <div class="content-left">
+                    <div class="profile-card card">
+                        <img src="img/3.jpeg" alt="Rafael Marquez" class="profile-img">
+                        <div class="profile-info">
+                            <h3>Rafael “El Inquebrantable” Marquez</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipiscing elit, nec nostra semper varius imperdiet neque leo, nullam vehicula sapien auctor volutpat sollicitudin.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="tips-guides card">
+                        <h3>Consejos y Guías para empezar en el mundo del boxeo</h3>
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                            <li>Molestuada faucibus montes sagittis, viverra iaculis molestie vei, sollicitudin aliquet.</li>
+                            <li>Accumsan mus turpis netus egestas conaba, curae magnis habitant.</li>
+                            <li>Inceptos egestas sodales ultrices, nascetur venenatis.</li>
+                            <li>Commodo id non nulla elementum, dignissim semper senectus, justo phasellus ac.</li>
+                            <li>Dictumst mi ligula nunc leo mattis, nisi fames lobortis.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-right">
+                    <div class="card video-card">
+                        <h3>Ultima publicacion Instagram</h3>
+                       <video controls width="600">
+                            <source src="m4/insta.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="card video-card">
+                        <h3>Ultima publicacion TikTok</h3>
+                        <video controls width="600">
+                            <source src="m4/tiktok.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="card social-media-card">
+                        <h3>Mis redes sociales</h3>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        Derechos reservados - Rafa "El Inquebrantable" Marquez / 2021 - 2025
+    </footer>
+</body>
+</html>
